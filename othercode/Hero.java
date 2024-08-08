@@ -46,6 +46,7 @@ class Woman extends Human{
 public class Hero {
   public static void main(String args[]){
       Scanner sc = new Scanner(System.in);
+      System.out.print("パーティーの人数を入力＞＞");
       int number = sc.nextInt();  //パーティーの人数
 
       //パーティーメンバー
@@ -53,7 +54,11 @@ public class Hero {
 
       //パーティーメンバーのデータを入力
       for(int i = 0; i < number; i++){
-          String name = sc.next();
+    	  System.out.println("パーティーメンバーの情報を入力（項目間は半額スペース ）");
+    	  if(i == 0) {
+    		  System.out.println("名前 性別 職業 攻撃力(数字) 魔力(数字) 素早さ(数字) 防御力(数字)");
+    	  }
+    	  String name = sc.next();
           String sex = sc.next();
           String job = sc.next();
           int power = sc.nextInt();
