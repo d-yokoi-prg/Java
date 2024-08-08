@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 //人間クラス
 class Human{
-  String name;   //名前
+  private String name;   //名前
   String job;    //職業
   int power;     //攻撃力
   int magical;   //魔力
@@ -19,11 +19,15 @@ class Human{
       speed = s;
       defence = d;
   }
+  
+  public String getName() {
+	  return name;
+  }
 }
 
 //男性クラス
 class Man extends Human{
-  String sex = "男";
+  private String sex = "男";
   Man(String n, String j, int p, int m, int s, int d){
       super(n, j, p, m, s, d);
       System.out.println("この人は男性です");
@@ -32,7 +36,7 @@ class Man extends Human{
 
 //女性クラス
 class Woman extends Human{
-  String sex = "女";
+  private String sex = "女";
   Woman(String n, String j, int p, int m, int s, int d){
       super(n, j, p, m, s, d);
       System.out.println("この人は女性です");
@@ -67,7 +71,7 @@ public class Hero {
 
       }
       for(int i = 0; i < party.size(); i++) {
-    	  System.out.println(party.get(i).name + "は"+ party.get(i).job);
+    	  System.out.println(party.get(i).getName() + "は"+ party.get(i).job);
     	  System.out.println("攻撃力：" + party.get(i).power);
     	  System.out.println("魔力：" + party.get(i).magical);
     	  System.out.println("素早さ" + party.get(i).speed);
