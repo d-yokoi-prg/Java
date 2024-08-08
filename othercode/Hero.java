@@ -1,16 +1,16 @@
-package javaApp;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //人間クラス
 class Human{
-  String name;
-  String job;
-  int power;
-  int magical;
-  int speed;
-  int defence;
+  String name;   //名前
+  String job;    //職業
+  int power;     //攻撃力
+  int magical;   //魔力
+  int speed;     //素早さ
+  int defence;   //防御力
+  
+  //コンストラクタでパラメータを設定
   Human(String n, String j, int p, int m, int s, int d){
       name = n;
       job = j;
@@ -26,6 +26,7 @@ class Man extends Human{
   String sex = "男";
   Man(String n, String j, int p, int m, int s, int d){
       super(n, j, p, m, s, d);
+      System.out.println("この人は男性です");
   }
 }
 
@@ -34,6 +35,7 @@ class Woman extends Human{
   String sex = "女";
   Woman(String n, String j, int p, int m, int s, int d){
       super(n, j, p, m, s, d);
+      System.out.println("この人は女性です");
   }
 }
 
