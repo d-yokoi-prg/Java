@@ -20,10 +20,6 @@ class desktopApp extends JFrame{
         //「×」ボタンで画面を閉じたらアプリケーションを終了する
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-    public JLabel updateLabel(JLabel jl){
-        return jl;
-    }
 	//表示するラベルを設定
 	public void setParts() {
         //画面上に表示するメッセージ
