@@ -29,6 +29,7 @@ class Human{
 	  		case  "戦士":
 	  			System.out.println("強い攻撃");
 	  			break;
+	  			
 	  		case "魔法使い":
 	  			System.out.println("ファイア");
 	  			System.out.println("サンダー");
@@ -61,6 +62,12 @@ class Man extends Human{
   Man(String n, String j, int h, int p, int m, int s, int d){
       super(n, j, h, p, m, s, d);
       System.out.println("この人は男性です");
+      
+  }
+  @Override
+  public void showFightCommand() {
+	 super.showFightCommand();
+	 System.out.println("力を溜める");
   }
 }
 
@@ -70,6 +77,11 @@ class Woman extends Human{
   Woman(String n, String j, int h, int p, int m, int s, int d){
       super(n, j, h, p, m, s, d);
       System.out.println("この人は女性です");
+  }
+  @Override
+  public void showFightCommand() {
+	  super.showFightCommand();
+	  System.out.println("アピール");
   }
 }
 
@@ -125,6 +137,9 @@ public class Hero {
       for(int i = 0; i < party.size(); i++) {
     	  if(partyMember.equals(party.get(i).getName())) {
     		  party.get(i).showFightCommand();
+    	  }
+    	  else {
+    		  System.out.println("パーティーにはいません");
     	  }
       }
   }
