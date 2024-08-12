@@ -3,7 +3,6 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 class Desktop extends JFrame{
-	private ArrayList<Integer> number = new ArrayList<>();	//計算用
+	private int answer = 0;
 	private String[] kigo = {"＋", "－", "×", "÷"};
 	private String keisan = "";
 	Desktop(String s){
@@ -28,7 +27,7 @@ class Desktop extends JFrame{
 		setVisible(true);
 		
 		//数値を表示
-		JLabel result = new JLabel("0");
+		JLabel result = new JLabel(String.valueOf(answer));
 		result.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 32));
 		result.setBounds(0, -30, 500, 100);
 		
@@ -89,7 +88,7 @@ class Desktop extends JFrame{
 			
 		});
 		
-		//当記号のボタン
+		//等記号のボタン
 		JButton togo = new JButton("=");
 		togo.setBounds(100, 200, 50, 50);
 		togo.addActionListener(new ActionListener() {
@@ -134,39 +133,43 @@ class Desktop extends JFrame{
 	
 	//入力された値をリセットするメソッド
 	public void resetNum(JLabel jl) {
-		jl.setText("0");
-		for(int i = 0; i < number.size(); i++) {
-			number.remove(i);
-		}
+		answer = 0;
+		jl.setText(String.valueOf(answer));
 	}
 	
 	//計算するメソッド
 	public void calcNum(String s, JLabel jl) {
-		number.add(Integer.parseInt(jl.getText()));
 		if(!s.equals("=")) {
 			keisan = s;
+			answer = answer + Integer.parseInt(jl.getText());
 			jl.setText("0");
 		}
-		//入力した記号に応じて計算
 		else {
+		//入力した記号に応じて計算
+		if(answer != 0) {
 			switch(keisan){
-			case "＋":
-				jl.setText(String.valueOf(number.get(0) + number.get(1)));
-				break;
-				
-			case "－":
-				jl.setText(String.valueOf(number.get(0) - number.get(1)));
-				break;
-				
-			case "×":
-				jl.setText(String.valueOf(number.get(0) * number.get(1)));
-				break;
-			case "÷":
-				jl.setText(String.valueOf(number.get(0) / number.get(1)));
-				break;
-			default:
-				break;
+				case "＋":
+					answer = answer + Integer.parseInt(jl.getText());
+					jl.setText(String.valueOf(answer));
+					break;
+
+				case "－":
+					answer = answer - Integer.parseInt(jl.getText());
+					jl.setText(String.valueOf(answer));
+					break;
+			
+				case "×":
+					answer = answer * Integer.parseInt(jl.getText());
+					jl.setText(String.valueOf(answer));
+					break;
+				case "÷":
+					answer = answer / Integer.parseInt(jl.getText());
+					jl.setText(String.valueOf(answer));
+					break;
+				default:
+					break;
 			}
+		}
 		}
 	}
 }
