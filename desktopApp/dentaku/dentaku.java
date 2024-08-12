@@ -32,10 +32,6 @@ class Desktop extends JFrame{
 		result.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 32));
 		result.setBounds(0, -30, 500, 100);
 		
-		JLabel a = new JLabel("e");
-		a.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 10));
-		a.setBounds(400, -50, 10, 10);
-		
 		//数字のボタンを設定
 		JButton[] numBtm = new JButton[10];
 		for(int i = 0; i <= 9; i++) {
@@ -73,7 +69,7 @@ class Desktop extends JFrame{
 			kigoBtm[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					calcNum(kigoBtm[ii].getText(), result, a);
+					calcNum(kigoBtm[ii].getText(), result);
 				}
 			});
 		}
@@ -93,20 +89,21 @@ class Desktop extends JFrame{
 			
 		});
 		
+		//当記号のボタン
 		JButton togo = new JButton("=");
 		togo.setBounds(100, 200, 50, 50);
 		togo.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e){
-				calcNum(togo.getText(), result, a);
+				calcNum(togo.getText(), result);
             } 
 			
 		});
 		
+		//それぞれのパーツをパネルに配置
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.add(result);
-		panel.add(a);
 		for(int i = 0; i <= 9; i++) {
 			panel.add(numBtm[i]);
 		}
@@ -144,14 +141,13 @@ class Desktop extends JFrame{
 	}
 	
 	//計算するメソッド
-	public void calcNum(String s, JLabel jl, JLabel jl01) {
-		System.out.println(s);
+	public void calcNum(String s, JLabel jl) {
 		number.add(Integer.parseInt(jl.getText()));
 		if(!s.equals("=")) {
 			keisan = s;
-			jl01.setText(jl.getText());
 			jl.setText("0");
 		}
+		//入力した記号に応じて計算
 		else {
 			switch(keisan){
 			case "＋":
