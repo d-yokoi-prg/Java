@@ -19,7 +19,7 @@ class Desktop extends JFrame{
 		super(s);
 		
 		//デスクトップのサイズを設定
-		setSize(250, 300);
+		setSize(300, 300);
 		
 		//サイズを固定する
 		//setResizable(false);
@@ -31,7 +31,10 @@ class Desktop extends JFrame{
 		JLabel result = new JLabel("0");
 		result.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 32));
 		result.setBounds(0, -30, 500, 100);
-
+		
+		JLabel a = new JLabel("e");
+		a.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 10));
+		a.setBounds(400, -50, 10, 10);
 		
 		//数字のボタンを設定
 		JButton[] numBtm = new JButton[10];
@@ -60,6 +63,22 @@ class Desktop extends JFrame{
 			
 		}
 		
+		//記号のボタンを作成・設定
+		JButton[] kigoBtm = new JButton[4];
+		for(int i = 0; i < kigo.length; i++) {
+			kigoBtm[i] = new JButton(kigo[i]);
+			kigoBtm[i].setBounds(150, 50 * (i+1), 50, 50);
+			
+			int ii = i;
+			kigoBtm[i].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					calcNum(kigoBtm[ii].getText(), result, a);
+				}
+			});
+		}
+		
+		
 		//最下層のボタンを設定
 		numBtm[9].setBounds(50, 200, 50, 50);		//0ボタン
 		
@@ -76,9 +95,10 @@ class Desktop extends JFrame{
 		
 		JButton togo = new JButton("=");
 		togo.setBounds(100, 200, 50, 50);
-		clear.addActionListener(new ActionListener() {
+		togo.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e){
+				calcNum(togo.getText(), result, a);
             } 
 			
 		});
@@ -86,10 +106,12 @@ class Desktop extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.add(result);
-	
+		panel.add(a);
 		for(int i = 0; i <= 9; i++) {
 			panel.add(numBtm[i]);
-
+		}
+		for(int i = 0; i < kigoBtm.length; i++) {
+			panel.add(kigoBtm[i]);
 		}
 		panel.add(clear);
 		panel.add(togo);
@@ -116,10 +138,41 @@ class Desktop extends JFrame{
 	//入力された値をリセットするメソッド
 	public void resetNum(JLabel jl) {
 		jl.setText("0");
+		for(int i = 0; i < number.size(); i++) {
+			number.remove(i);
+		}
 	}
 	
 	//計算するメソッド
-
+	public void calcNum(String s, JLabel jl, JLabel jl01) {
+		System.out.println(s);
+		number.add(Integer.parseInt(jl.getText()));
+		if(!s.equals("=")) {
+			keisan = s;
+			jl01.setText(jl.getText());
+			jl.setText("0");
+		}
+		else {
+			switch(keisan){
+			case "＋":
+				jl.setText(String.valueOf(number.get(0) + number.get(1)));
+				break;
+				
+			case "－":
+				jl.setText(String.valueOf(number.get(0) - number.get(1)));
+				break;
+				
+			case "×":
+				jl.setText(String.valueOf(number.get(0) * number.get(1)));
+				break;
+			case "÷":
+				jl.setText(String.valueOf(number.get(0) / number.get(1)));
+				break;
+			default:
+				break;
+			}
+		}
+	}
 }
 
 public class dentaku{
