@@ -19,10 +19,10 @@ class Desktop extends JFrame{
 		super(s);
 		
 		//デスクトップのサイズを設定
-		setSize(300, 300);
+		setSize(250, 300);
 		
 		//サイズを固定する
-		//setResizable(false);
+		setResizable(false);
 		
 		//デスクトップを表示する
 		setVisible(true);
