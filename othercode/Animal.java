@@ -84,7 +84,7 @@ class Cat extends Animals{
     }
 }
 
-class test{
+class Main{
     public static void main(String arg[]){
         Scanner sc = new Scanner(System.in);
         Dog pochi = new Dog("ポチ");
